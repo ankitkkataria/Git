@@ -14,3 +14,9 @@ git log incase of long commit messages is a troublesome thing to scroll through.
 So, You can just use git log --oneline (What this does is it does two things one shortens the hash code and second is it only shows the first line of your commit messages.)
 
 So, While making long commit messages make sure that the first line tells you okay this is exactly what you did and then add a blank line and then write the rest of longer message.(This is so when someone reads oneline explanation he/she should atleast be able to understand what happend due to this commit and if they want to go and read more about it they can just use git log rather than using git log --oneline)
+
+Amending Commits :-
+Suppose you just made a commit and then realized you forgot to include a file. Or, maybe you made a typo in the commit message that you want to correct.
+Rather than making a brand new separate commit, you can "redo" the previous commit using the --amend option.
+What git commit --amend does is it takes the new files in the staging area and adds it to the previous commit and also gives you an option to change the previous commit message through opening your default editor that you set up using git config.
+So, If you let's just say you want to change the previous commit message you can just go ahead and use amend to change that without adding any files to the staging area cause if you add something to the staging area you will also be bundling that up with the previous commit.
