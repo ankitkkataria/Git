@@ -20,3 +20,22 @@ Suppose you just made a commit and then realized you forgot to include a file. O
 Rather than making a brand new separate commit, you can "redo" the previous commit using the --amend option.
 What git commit --amend does is it takes the new files in the staging area and adds it to the previous commit and also gives you an option to change the previous commit message through opening your default editor that you set up using git config.
 So, If you let's just say you want to change the previous commit message you can just go ahead and use amend to change that without adding any files to the staging area cause if you add something to the staging area you will also be bundling that up with the previous commit.
+Just remember git commit --amend can only make changes to the previous/most recent commit not to any of the previous commits before that.
+
+Ignoring Files
+We can tell Git which files and directories to ignore in a given repository, using a .gitignore file. This is useful for files you know you NEVER want to commit, including :-
+• Secrets, API keys, credentials, etc.
+• Operating System files (.DS—Store on Mac)
+• Log files
+• Dependencies & packages
+
+To ignore files we can do it using .gitignore file.
+Create a file called .gitignore in the root of a repository (or anywhere in the repository but it's a convention to do it in root directory). 
+Inside the file, we can write patterns to tell Git which files 8 folders to ignore :-
+• .DS_Store will ignore files named .DS_Store
+• folderName/ will ignore an entire directory
+• *.log will ignore any files with the .log extension
+Also * means any pattern but ? means a single character so you can even have a git ignore line that says ?.log it will ignore all the files that are x.log (where x can be any character.)
+gitignore.io is a good site that gives you a prebuilt gitignore file for any language you might be planning to work in so you don't have to go and add node_modules for every single JS project.
+
+
