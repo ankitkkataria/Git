@@ -1,10 +1,16 @@
 In order to open the directory that you're currently in the terminal just type (start .) and it will open in file explorer sometimes it can be very useful.
+
 To move/copy a file or folder to the parent directory you can use the command mv (fileName.ext ..) or cp (fileName.ext ..).
+
 Instead of just writing ls you can even write ls folderName/path (A random folder in current directory or even a path for that matter) it will show it's contents too.h
+
 You can use git add directoryName too incase you want to add an entire directory to the staging area.
 One good practice to go by is making commits atomic basically make commits that focus on one feature of whatever but don't make commits that change a lot of files in lots of things and have not much of a relation with each other that will cause a lot of issues if you revert a commit.
+
 For long commit messages you can change the default editor from vim to vscode easily using this command (git config --global core.editor "code --wait")
 In these long commit messages you can even have paragraphs and bullet points and stuff.
+
 git log incase of long commit messages is a troublesome thing to scroll through.
 So, You can just use git log --oneline (What this does is it does two things one shortens the hash code and second is it only shows the first line of your commit messages.)
+
 So, While making long commit messages make sure that the first line tells you okay this is exactly what you did and then add a blank line and then write the rest of longer message.(This is so when someone reads oneline explanation he/she should atleast be able to understand what happend due to this commit and if they want to go and read more about it they can just use git log rather than using git log --oneline)
