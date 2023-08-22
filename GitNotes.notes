@@ -1,0 +1,5 @@
+In order to open the directory that you're currently in the terminal just type (start .) and it will open in file explorer sometimes it can be very useful.
+To move/copy a file or folder to the parent directory you can use the command mv (fileName.ext ..) or cp (fileName.ext ..).
+Instead of just writing ls you can even write ls folderName/path (A random folder in current directory or even a path for that matter) it will show it's contents too.h
+You can use git add directoryName too incase you want to add an entire directory to the staging area.
+One good practice to go by is making commits atomic basically make commits that focus on one feature of whatever but don't make commits that change a lot of files in lots of things and have not much of a relation with each other that will cause a lot of issues if you revert a commit.
