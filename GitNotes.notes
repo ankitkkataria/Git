@@ -38,4 +38,24 @@ Inside the file, we can write patterns to tell Git which files 8 folders to igno
 Also * means any pattern but ? means a single character so you can even have a git ignore line that says ?.log it will ignore all the files that are x.log (where x can be any character.)
 gitignore.io is a good site that gives you a prebuilt gitignore file for any language you might be planning to work in so you don't have to go and add node_modules for every single JS project.
 
+master/main branch is nothing special it has no extra unique powers or anything it's just your default branch that's it every single branch with any name will all have the same capabilities.
+
+A branch is just a reference to some commit.(Think about it.)
+Also one more thing each commit also has the hashcode of the previous commit too so it can go back to the previous commit.
+
+git branch :- Shows all the branches you have in your project and also highlights the one you're currently on by putting a (*) in front of it.
+git branch <branch-name> :-  This is used to make a new branch based upon the current HEAD (This line that you just read is exteremly important). This just creates the branch. It does not switch you to that branch (the HEAD stays the same).
+
+git commit -a -m 'some message' is just doing git add . and then git commit -m 'some message'. So, it's basically doing it adds all the changes to the staging area and then commits with the message provided.
+
+Instead of doing git branch newBranchName and then doing git switch newBranchName
+You can create and switch to a new branch with just one step too that can be done using git switch -c newBranchName. (c stands for create)
+
+Do keep in mind :-
+git switch randomBranchName (This will give you an error if their is no branch by the name of randomBranchName so that -c flag is important).
+
+git checkout <branch-name> can also be used for switching branches but it's a little bit older way of doing it.
+git checkout -b <branch-name> is used to create and switch to the branch just like git switch -c <branch-name>
+
+When you switch from one branch to other all the files and all the changes in all those files that we left it at will all be restored branches are not related to a single file.
 
