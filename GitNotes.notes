@@ -39,6 +39,7 @@ Also * means any pattern but ? means a single character so you can even have a g
 gitignore.io is a good site that gives you a prebuilt gitignore file for any language you might be planning to work in so you don't have to go and add node_modules for every single JS project.
 
 master/main branch is nothing special it has no extra unique powers or anything it's just your default branch that's it every single branch with any name will all have the same capabilities.
+Your branch name shouldn't have spaces.
 
 A branch is just a reference to some commit.(Think about it.)
 Also one more thing each commit also has the hashcode of the previous commit too so it can go back to the previous commit.
@@ -59,3 +60,34 @@ git checkout -b <branch-name> is used to create and switch to the branch just li
 
 When you switch from one branch to other all the files and all the changes in all those files that we left it at will all be restored branches are not related to a single file.
 
+If you have a file that's part of two branches and if you try to write something in a file and without committing the changes you want to just go ahead and change the branch what that will do is it will give you a fair warning saying whatever you did in this file will be lost if you don't stash or commit these changes. 
+We will learn about stashing later but for now we should commit if we want to preserve the data.
+But let's say in a branch you created a completely new file and you switch to another branch without commiting that file that file will follow you to the new branch as well you will be able to switch to the other branch no problem but just keep in mind that file which didn't exist in the other branch will say okay i'm an untracked file.
+
+Deleting a branch :-
+In order to delete a branch we use the git branch -d <branch-name>
+But first most important thing is you can't delete a branch if you're currently on it you must first move to a different branch if you want to delete it.
+Second thing that you should also know is if you just use this command git branch -d <branch-name> it will only delete this branch if it has been merged with some other branch completely.
+But if you're sure that you want to delete the branch without even merging you should use the -D flag.
+So, git branch -D <branch-name> (even this command also you can use from after switching to other branch than the one you'd like to delete.) is your commad that you should use if you want to delete without merging.
+
+Renaming a branch :-
+In order to rename first you must switch to the branch that you want to rename. (It's opposite of deleting a branch)
+Then use git branch -m UpdatedNameForThisBranch.
+
+git branch -v (Shows all the branches but also shows the latest commit in each of those branches.)
+
+Merging branches :-
+If you want to merge a branch into some other branch you must do this :-
+1 :- Switch to the branch in which the branch will be finally merged in like if you want to merge oldies branch into master first switch to master.
+2 :- Then go ahead and write git merge oldies. 
+If no commits have been done in the master branch since the oldies branch was made out of it but in oldies branch after it branched from master branch some commits have been done it is called a fast-forward merge. (In this all what happens is we just move the branch pointer of master to the latest commit in oldies that's it.)
+
+Now coming to the case where the master branch had some more commits as you worked on your separate branch.
+Now you might think that will always lead to an issue but that's not the case let's say in master branch you worked on randomFile.txt and in other branch you just worked on some other files all together and there is no conflict as in no line in common files is different in any of the files in that case we don't have to do much at all.
+Just do git merge <branch-name> from the master branch if you want to merge into master branch.
+If there are no conflicts you'll just be provided with a message window like you would in git commit and just write another message.
+And a new commit will be created due to this merge and all the changes in both the branch's latest commits will be merged as well.
+
+Sometimes you might have conflicts in multiple files as well while merging so you will have to resolve conflicts in all those files manually as well.
+Also while merging two branches you don't have to just accept changes from one or the other or both you can even add extra stuff when coming to code you might even have to add extra comments or code that's needed in order for this merge to be successful and there is nothing wrong in doing that just because you're resolving conflicts that doesn't mean you have to be limited to only accepting code from one file or other or both.
