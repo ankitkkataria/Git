@@ -87,7 +87,11 @@ Now coming to the case where the master branch had some more commits as you work
 Now you might think that will always lead to an issue but that's not the case let's say in master branch you worked on randomFile.txt and in other branch you just worked on some other files all together and there is no conflict as in no line in common files is different in any of the files in that case we don't have to do much at all.
 Just do git merge <branch-name> from the master branch if you want to merge into master branch.
 If there are no conflicts you'll just be provided with a message window like you would in git commit and just write another message.
-And a new commit will be created due to this merge and all the changes in both the branch's latest commits will be merged as well.
+And a new commit will be created due to this merge and all the changes in both the branch's latest commits will be merged as well this is actually called a merge commit.
 
 Sometimes you might have conflicts in multiple files as well while merging so you will have to resolve conflicts in all those files manually as well.
 Also while merging two branches you don't have to just accept changes from one or the other or both you can even add extra stuff when coming to code you might even have to add extra comments or code that's needed in order for this merge to be successful and there is nothing wrong in doing that just because you're resolving conflicts that doesn't mean you have to be limited to only accepting code from one file or other or both.
+
+Diff :-
+git diff :- This command what it does is it checks the previous commit that you made and it will see the unstaged changes that you've made after that commit and it will show you the differences between those two things in all the unstaged files but it won't show you the differance between last commit files and staged files. So if you stage some files and then write git diff it won't show you any changes between those files and last commit files even if you did make some changes.
+
