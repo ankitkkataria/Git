@@ -93,5 +93,13 @@ Sometimes you might have conflicts in multiple files as well while merging so yo
 Also while merging two branches you don't have to just accept changes from one or the other or both you can even add extra stuff when coming to code you might even have to add extra comments or code that's needed in order for this merge to be successful and there is nothing wrong in doing that just because you're resolving conflicts that doesn't mean you have to be limited to only accepting code from one file or other or both.
 
 Diff :-
-git diff :- This command what it does is it checks the previous commit that you made and it will see the unstaged changes that you've made after that commit and it will show you the differences between those two things in all the unstaged files but it won't show you the differance between last commit files and staged files. So if you stage some files and then write git diff it won't show you any changes between those files and last commit files even if you did make some changes.
+git diff :- This command what it does is it gives shows you all the unstaged changes in the files that were once staged in previous commits. But if you stage these updated files it won't show you those changes in git diff. It's a bit weird let me explain further :-
+            So, Basically it gives you the difference between your working directory and the staging area.
+            Like let's say you have a file rainbow.txt and you committed with colors written red,orange.
+            Now, If you add the color blue to it and without staging it if you type git diff it will show you oh. you have added blue cause this file was once staged when it was commited the last time.
+            But if you stage this change and then type git diff then it won't show you any changes cause it's comparing the latest version of this file that came to it with the working directory.
+            But if you add a new file that was never tracked by the previous commit and you have never added it to the staging area either during your last commit cause you made it after the commit.
+            Now git diff won't show you any difference between staging area and this file even if you add this file to the staging area cause it's comparing it with the staging area file. (Without adding it to the staging even git diff HEAD won't show any difference cause the file would be untracked.)
+            But if you add it to the staging area now and type git diff HEAD it will show you the changes cause it's comparing the commit where the HEAD is pointing and the staged and unstaged(That were once staged but staged now by that I mean they shouldn't be untracked files.)
 
+git diff HEAD :- This command shows all the changes whether they be staged or unstaged between the commit where head in pointing no matter the branch and the current working directory.
