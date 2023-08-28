@@ -103,3 +103,68 @@ git diff :- This command what it does is it gives shows you all the unstaged cha
             But if you add it to the staging area now and type git diff HEAD it will show you the changes cause it's comparing the commit where the HEAD is pointing and the staged and unstaged(That were once staged but staged now by that I mean they shouldn't be untracked files.)
 
 git diff HEAD :- This command shows all the changes whether they be staged or unstaged between the commit where head in pointing no matter the branch and the current working directory.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+git diff branchl..branch2 :- This will list the changes between the tips of branchl and branch2. (Do remember .. here in between branch names is optional but people like doing that anyways.)
+                             It's usually the case that git diff branch1..branch2 will give the opposite result of git diff branch2..branch1.
+                             This command gives the difference between both the latest commits in both the branches in all the files.
+                             Again you can write the file names if you just want to see the difference in some certain file/files.
+                             Like :- git diff branch1..branch2 fileName.ext
+
+
+Now if you want to compare between two commits you can use a similar kind of syntax.
+git diff commitHash1..commitHash2(.. is optional) again all the properties of git diff branch1..branch2 apply here as well. (Using this command you can compare differences between any two commits they need not be from the same branch they can be from different branches as well.)
+
+For git diff it's better to use GUIs like gitkraken. If you want to compare between two commits just hold down shift and chick on both of them.
+For seeing unstaged,staged chnages in GUIs it's simple you'll see those files in the unstaged and staged area and you'll be able to compare them just by clicking on those files in the unstaged, staged areas.
+
+If you want to compare the differences between the HEAD commit on this branch with it's parent there are two ways of doing that.
+One would be you copy their commit hashes and see the diff.
+Other one would be to write git diff HEAD HEAD~1. It just compares it with the commit that was just before the HEAD commit.(Similarly you can even your 2,3,4 inplace of 1.)
+Other way would be git diff HEAD~1 (This is equivalant to writing git diff HEAD~1 HEAD). Usually this way is better cause you see the recent additions as + signs and deletions are - signs.
+
+Stashing :- 
+
+Why do we need stashing ?
+
+When you have uncommited changes in your file/s and you try to switch branches it will lead to one of these two cases :-
+1) Either the changes will go with you to the destination branch if there are no conflicts.
+2) Other git won't let you switch the branches if it detect potential conflicts.
+So, In order to temporarily save your changes without making an uneccesary commit that's where the use of stashing comes in.
+
+Stashing :- Git provides an easy way of stashing these uncommitted changes so that we can return to them later, without having to make unnecessary commits.
+
+git stash (or git stash save) :- git stash is super useful command that helps you save changes that you are not yet ready to commit. You can stash changes and then come back to them later. Running git stash will take all uncommitted changes (staged and unstaged) and stash them, reverting the changes in your working copy.
+git stash pop :- Use git stash pop to remove the most recently stashed changes in your stash and re-apply them to your working copy. (Do keep in mind that stashed changes need not be popped at the branch you saved it from you can even apply them to some other branch as well.)
+git stash apply :- You can use git stash apply to apply whatever is stashed away, without removing it from the stash. This can be useful if you want to apply stashed changes to multiple branches.
+
+Stashing Multiple Times :- You can add multiple stashes onto the stack of stashes. They will all be stashed in the order you added them.
+git stash list :- If you stash multiple changes from one branch (not common) or multiple branches you can view all of them through git stash list command. Each of the stash will show a message that is nothing but the most recent commit message from each of the branch where that stash was made.
+Applying Specific Stashes From All The Stashes :-  git assumes you want to apply the most recent stash when you run git stash apply, but you can also specify a particular stash like git stash apply stash@{2}
+Dropping Stashes :- To delete a particular stash, you can use git stash drop <stash-id> if you are not doing git stash pop cause that will anyways pop the most recent stash.
+git stash clear :- This command will delete the entire stash stack all of the enteries will be cleared out.
+
+
+
+
