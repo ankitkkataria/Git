@@ -217,6 +217,22 @@ Also, It's not the case you can only go back using git restore you can even move
 Let's say you ran the command git restore --source HEAD~2 and you felt like I would like to take this file back to how it was at the time of the latest commit on this branch.
 Then all you have to do is just type git restore <file-name> and since the default source is actually HEAD. It will be converted back to how it was at the time of the latest commit. Or you may even choose to run the command git restore --source HEAD~1. So the basic point is that you can even move forward.
 
+Other purpose of git restore :-
+It's to remove files from the staging area.
+See we know the git add command. 
+And I read in some other course that git rm --cached <file-name>/<file-names> is a way to remove files from staging area.
+Now there is an newer version of doing the same thing that can be done using git restore --staged <file-name>/<file-names>.
+
+Reseting Commits :-
+Imagine the situation where you're on main branch and you're working and you're making commits you realize oh shit I shouldn't have made these commits on the main branch but you don't want to go back a few commits and lose all this work.
+In that case what you do is you use 
+git reset <commit-hash> or git reset HEAD~X. Whatever you were doing after all these commits it doesn't matter the latest work was staged or unstaged all of it will come back with you temporarily (This is done for the cases you would still like to take these changes that you made in the new commits and even uncommited work that you did and make a separate branch basically after commit to the <commit-hash> commit for this work only. As soon as you add and commit them all these changes will stay on this new branch as when you go back to your master branch it will have only the <commit-hash> commit's code not the new one that you got from all the commits after it that was only temporary) to the commit whoever's commit-hash you wrote after git reset and all the commits after the commit hash you mentioned will be deleted .
+git reset --hard <commit-hash> or git reset --hard HEAD-X will not be bringing any of the changes that you did after this <commit-hash> commit. It will delete both the commits as well as the changes that you did after that point permanently.
+One more thing that I had a question for was like :-
+Let's say I branch off from somewhere my branch reference actually points to the same commit now if I go ahead and do a hard reset will that commit be gone from both the branchs ?
+Actually nope whenever you make a new branch from a commit you get an entirely new branch uptil that point.
+So, Nope that commit will only be deleted from the branch that you did the git reset --hard on.
+
 
 
 
