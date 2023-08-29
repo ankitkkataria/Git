@@ -126,7 +126,7 @@ git diff HEAD :- This command shows all the changes whether they be staged or un
 
 
 
-git diff branchl..branch2 :- This will list the changes between the tips of branchl and branch2. (Do remember .. here in between branch names is optional but people like doing that anyways.)
+git diff branch1..branch2 :- This will list the changes between the tips of branchl and branch2. (Do remember .. here in between branch names is optional but people like doing that anyways.)
                              It's usually the case that git diff branch1..branch2 will give the opposite result of git diff branch2..branch1.
                              This command gives the difference between both the latest commits in both the branches in all the files.
                              Again you can write the file names if you just want to see the difference in some certain file/files.
@@ -164,6 +164,59 @@ git stash list :- If you stash multiple changes from one branch (not common) or 
 Applying Specific Stashes From All The Stashes :-  git assumes you want to apply the most recent stash when you run git stash apply, but you can also specify a particular stash like git stash apply stash@{2}
 Dropping Stashes :- To delete a particular stash, you can use git stash drop <stash-id> if you are not doing git stash pop cause that will anyways pop the most recent stash.
 git stash clear :- This command will delete the entire stash stack all of the enteries will be cleared out.
+
+
+Undoing Changes & Time Travelling :-
+
+
+Must read these slides :- https://www.canva.com/design/DAEPZZHOafo/uagxrNdvbI_wDpjfNpK_4w/view?utm_content=DAEPZZHOafo&utm_campaign=designshare&utm_medium=link&utm_source=sharebutton
+The git checkout command is like a Git Swiss Army knife. Many developers think it is overloaded, which is what lead to the addition of the git switch and git restore commands We can use checkout to create branches, switch to new branches, restore files, and undo history!
+We can use git checkout commit <commit-hash> to view a previous commit. Remember, you can use the git log command to view commit hashes. We just need the 7 digits of a commit hash (Which you can get using git log --oneline). Don't panic when you see the following message...
+You are in 'detached HEAD' state. You can look around, make experimental changes and commit them, and you can discard any commits you make in this state without impacting any branches by switching back to a branch.
+See what's happening here is :- Usually, HEAD points to a specific branch reference rather than a particular commit.  
+HEAD is a pointer to the current branch reference
+The branch reference is a pointer to the last commit made on a particular branch.
+When we make a new commit, the branch reference is updated to reflect the new commit. 
+The HEAD remains the same, because it's pointing at the branch reference.
+This is all to say that HEAD usually refers to a branch NOT a specific commit.
+When we checkout a particular commit, HEAD points at that commit rather than at the branch pointer.
+
+What can you do when you're in detached head state ?
+You have a couple options :-
+1 :- Stay in detached HEAD to examine the contents of the old commit. poke around, view the files, etc.
+2 :- Leave and go back to wherever you were before - reattach the HEAD (This can be done by switching to any branch)
+3 :- Create a new branch and switch to it. You can now make and save changes, since HEAD is no longer detached. (Cause now it will be pointing to the new branch reference.)
+
+
+Checkout :-
+
+git checkout supports a slightly odd syntax for referencing previous commits relative to a particular commit.
+HEAD~1 refers to the commit before HEAD (parent). HEAD~2 refers to 2 commits before HEAD (grandparent). This is not essential, but I wanted to mention it because it's quite weird looking if you've never seen it.
+So, Whereever the HEAD is pointing to right now it doesn't matter if it's a branch reference or if you're in detached HEAD state if you type git checkout HEAD~1 it will be moved to the previous commit of whereever the head currently points to.
+Let's say you're in X branch and then you move to branch Y to do some work or whatever now you forget which branch you were on prior to this you can use (git switch -) command to switch back to the previously used branch.
+In a similar fashion let's say you're in detached HEAD state and then want to go back to the the tip of this branch one thing is to type git switch X or just type (git switch -).
+
+
+Discarding Changes :-
+
+Suppose you've made some changes to a file but don't want to keep them. To revert the file back to whatever it looked like when you last committed, you can use :-
+git checkout HEAD <filename>/<filenames> to discard any changes in that file, reverting back to the the commit where the HEAD is pointing.
+git checkout -- <filename>/<filenames> also is kind of a shortcut for doing the same thing as the command just above.
+
+Newer way of discarding changes rather than using the above two commands is through git restore
+git restore is a brand new Git command that helps with undoing operations.
+Suppose made some changes to a file since you last commit. You've saved the file but then realize you definitely do NOT want those changes anymore. To restore the file to the contents in the HEAD, use git restore <file-name>/<file-names>. See this is exactly similar atleast in functionality to git checkout HEAD <filename>/<filenames>.
+NOTE:
+    The git restore command is not "undoable". If you have uncommited changes in the file, they will be lost!
+
+Now you can even go back to how your file/files were even a few commits ago.
+Normally git restore <file-name>/<file-names> restores using HEAD as the default source, but we can change that using the --source option.
+For example, git restore --source HEAD~1 home.html (In place of HEAD~1 we can even write a commit hash of the commit to which you would like to revert this file/files back to. So, you can write the commit hash as an source too.)
+One more thing to note is that the file that you're currently working on will be reverted back to what it looked like in previous commit depending on whatever you provide as the source but that doesn't mean your HEAD pointer also starts pointing there it's not like we go in some detached HEAD state. Our HEAD stays in the same location just those files are reverted back to what they looked like at the time that source commit was made.
+Also, It's not the case you can only go back using git restore you can even move forward.
+Let's say you ran the command git restore --source HEAD~2 and you felt like I would like to take this file back to how it was at the time of the latest commit on this branch.
+Then all you have to do is just type git restore <file-name> and since the default source is actually HEAD. It will be converted back to how it was at the time of the latest commit. Or you may even choose to run the command git restore --source HEAD~1. So the basic point is that you can even move forward.
+
 
 
 
