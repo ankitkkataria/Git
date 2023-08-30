@@ -196,7 +196,7 @@ git checkout HEAD <filename>/<filenames> to discard any changes in that file, re
 git checkout -- <filename>/<filenames> also is kind of a shortcut for doing the same thing as the command just above.
 
 Newer way of discarding changes rather than using the above two commands is through git restore
-git restore is a brand new Git command that helps with undoing operations.
+git restore is a brand new git command that helps with undoing operations.
 Suppose made some changes to a file since you last commit. You've saved the file but then realize you definitely do NOT want those changes anymore. To restore the file to the contents in the HEAD, use git restore <file-name>/<file-names>. See this is exactly similar atleast in functionality to git checkout HEAD <filename>/<filenames>.
 NOTE:
     The git restore command is not "undoable". If you have uncommited changes in the file, they will be lost!
